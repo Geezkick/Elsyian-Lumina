@@ -1,0 +1,1453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elysian Lumina | Eternal Memories</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-orange: #FF7723;
+            --dark-black: #0A0A0A;
+            --premium-blue: #1A73E8;
+            --dark-green: #0F4C3A;
+            --metallic-gold: #D4AF37;
+            --text-light: #F5F5F5;
+            --card-bg: rgba(26, 26, 26, 0.8);
+            --gradient: linear-gradient(135deg, var(--primary-orange), var(--premium-blue), var(--dark-green));
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, var(--dark-black) 0%, #1a1a2e 50%, #16213e 100%);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23FF7722" fill-opacity="0.1" d="M0,128L48,117.3C96,107,192,85,288,112C384,139,480,213,576,218.7C672,224,768,160,864,138.7C960,117,1056,139,1152,149.3C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+            background-size: cover;
+            z-index: -1;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--metallic-gold);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .logo h1 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 28px;
+            background: linear-gradient(to right, var(--primary-orange), var(--metallic-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-left: 10px;
+        }
+        
+        .logo-icon {
+            color: var(--primary-orange);
+            font-size: 32px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary-orange);
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-orange);
+            transition: width 0.3s;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        .auth-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            border: none;
+            outline: none;
+        }
+        
+        .btn-login {
+            background: transparent;
+            border: 2px solid var(--premium-blue);
+            color: var(--premium-blue);
+        }
+        
+        .btn-login:hover {
+            background: var(--premium-blue);
+            color: var(--text-light);
+        }
+        
+        .btn-signup {
+            background: linear-gradient(135deg, var(--primary-orange), var(--metallic-gold));
+            border: none;
+            color: var(--text-light);
+        }
+        
+        .btn-signup:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 119, 35, 0.3);
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 60px 0;
+        }
+        
+        .hero-content {
+            max-width: 650px;
+            z-index: 2;
+        }
+        
+        .hero h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            background: linear-gradient(to right, var(--text-light), var(--metallic-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #ccc;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--premium-blue), #6C8EF5);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--dark-green);
+            color: var(--text-light);
+            padding: 15px 30px;
+            font-size: 1.1rem;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(26, 115, 232, 0.3);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(15, 76, 58, 0.2);
+        }
+        
+        .hero-image {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1548213233-9bd6ad756ad4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80') center/cover;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--primary-orange), var(--premium-blue), var(--dark-green));
+            opacity: 0.3;
+            mix-blend-mode: overlay;
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--primary-orange), var(--metallic-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .section-title p {
+            color: #ccc;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-orange);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--primary-orange), var(--metallic-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--text-light);
+        }
+        
+        .feature-card p {
+            color: #ccc;
+        }
+        
+        /* Memorial Preview */
+        .memorial-preview {
+            padding: 100px 0;
+            background: rgba(0, 0, 0, 0.4);
+            position: relative;
+        }
+        
+        .memorial-preview::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80') center/cover fixed;
+            opacity: 0.2;
+            z-index: -1;
+        }
+        
+        .preview-container {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .preview-header {
+            background: linear-gradient(135deg, var(--dark-black), var(--dark-green));
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .preview-profile {
+            display: flex;
+            align-items: center;
+        }
+        
+        .preview-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 20px;
+            border: 3px solid var(--metallic-gold);
+        }
+        
+        .preview-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .preview-name h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--text-light);
+        }
+        
+        .preview-name p {
+            color: #ccc;
+        }
+        
+        .preview-stats {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat h3 {
+            font-size: 1.5rem;
+            color: var(--primary-orange);
+        }
+        
+        .stat p {
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+        
+        .preview-content {
+            padding: 30px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        .timeline {
+            grid-column: 1 / -1;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .timeline h3 {
+            margin-bottom: 15px;
+            color: var(--metallic-gold);
+        }
+        
+        .time-count {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+        }
+        
+        .time-box {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 15px;
+            border-radius: 10px;
+            min-width: 100px;
+        }
+        
+        .time-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-orange);
+        }
+        
+        .time-label {
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+        
+        .preview-left, .preview-right {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .preview-card {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+        }
+        
+        .preview-card h3 {
+            margin-bottom: 15px;
+            color: var(--metallic-gold);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .preview-card h3 i {
+            color: var(--primary-orange);
+        }
+        
+        .music-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .music-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px;
+            border-radius: 5px;
+            transition: background 0.3s;
+            cursor: pointer;
+        }
+        
+        .music-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .music-icon {
+            color: var(--primary-orange);
+        }
+        
+        .music-name {
+            flex: 1;
+        }
+        
+        .memory-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        
+        .memory-item {
+            height: 100px;
+            border-radius: 5px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .memory-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        
+        .memory-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 0 50px rgba(255, 119, 35, 0.2);
+            position: relative;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .close-modal:hover {
+            color: var(--primary-orange);
+        }
+        
+        .modal-title {
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--metallic-gold);
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #ccc;
+        }
+        
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.3);
+            color: var(--text-light);
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--premium-blue);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark-black);
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--metallic-gold);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--primary-orange);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .developer {
+            margin-top: 10px;
+            color: var(--metallic-gold);
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animated {
+            animation: fadeIn 1s ease-out forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        
+        /* Hologram Effect */
+        .hologram-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 0 auto;
+            perspective: 1000px;
+        }
+        
+        .hologram {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: rotate 20s infinite linear;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotateY(0deg); }
+            to { transform: rotateY(360deg); }
+        }
+        
+        .hologram-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(26, 115, 232, 0.2), rgba(255, 119, 35, 0.2));
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--metallic-gold);
+            backdrop-filter: blur(5px);
+        }
+        
+        .hologram-face:nth-child(1) { transform: rotateY(0deg) translateZ(150px); }
+        .hologram-face:nth-child(2) { transform: rotateY(90deg) translateZ(150px); }
+        .hologram-face:nth-child(3) { transform: rotateY(180deg) translateZ(150px); }
+        .hologram-face:nth-child(4) { transform: rotateY(270deg) translateZ(150px); }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-image {
+                position: relative;
+                width: 100%;
+                margin-top: 40px;
+                transform: none;
+            }
+            
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-content {
+                margin: 0 auto;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+            
+            .preview-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+            
+            nav ul li {
+                margin-left: 0;
+            }
+            
+            .preview-header {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .preview-stats {
+                width: 100%;
+                justify-content: space-around;
+            }
+            
+            .feature-card {
+                padding: 20px;
+            }
+            
+            .hologram-container {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .hologram-face {
+                font-size: 2rem;
+            }
+            
+            .hologram-face:nth-child(1) { transform: rotateY(0deg) translateZ(100px); }
+            .hologram-face:nth-child(2) { transform: rotateY(90deg) translateZ(100px); }
+            .hologram-face:nth-child(3) { transform: rotateY(180deg) translateZ(100px); }
+            .hologram-face:nth-child(4) { transform: rotateY(270deg) translateZ(100px); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo" id="logo">
+                <i class="fas fa-cloud-moon logo-icon"></i>
+                <h1>Elysian Lumina</h1>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="#" class="nav-link" data-target="home">Home</a></li>
+                    <li><a href="#" class="nav-link" data-target="features">Features</a></li>
+                    <li><a href="#" class="nav-link" data-target="memorials">Memorials</a></li>
+                    <li><a href="#" class="nav-link" data-target="pricing">Pricing</a></li>
+                    <li><a href="#" class="nav-link" data-target="about">About</a></li>
+                </ul>
+            </nav>
+            
+            <div class="auth-buttons">
+                <button class="btn btn-login" id="loginBtn">Login</button>
+                <button class="btn btn-signup" id="signupBtn">Sign Up</button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content animated">
+                <h2>Honoring Eternal Memories with Technology</h2>
+                <p>Elysian Lumina is a premium platform where families celebrate the lives of their loved ones, preserve legacies, and find comfort through innovative AI technology.</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" id="createMemorialBtn">Create Memorial</button>
+                    <button class="btn btn-secondary" id="learnMoreBtn">Learn More</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="hero-image animated delay-1">
+            <!-- Modern graveyard image as background -->
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title animated">
+                <h2>Premium Features</h2>
+                <p>Elysian Lumina offers cutting-edge technology to preserve memories and provide comfort</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card animated delay-1" data-feature="voice">
+                    <div class="feature-icon">
+                        <i class="fas fa-microphone-alt"></i>
+                    </div>
+                    <h3>AI Voice Cloning</h3>
+                    <p>Recreate the voice of your loved one using advanced AI technology for comforting interactions.</p>
+                </div>
+                
+                <div class="feature-card animated delay-1" data-feature="timeline">
+                    <div class="feature-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h3>Life Timeline</h3>
+                    <p>Celebrate the journey with an interactive timeline showing time alive and since passing.</p>
+                </div>
+                
+                <div class="feature-card animated delay-2" data-feature="hologram">
+                    <div class="feature-icon">
+                        <i class="fas fa-vr-cardboard"></i>
+                    </div>
+                    <h3>3D Holograms</h3>
+                    <p>Interact with a realistic holographic representation of your loved one through our platform.</p>
+                </div>
+                
+                <div class="feature-card animated delay-2" data-feature="memory">
+                    <div class="feature-icon">
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                    <h3>Memory Sharing</h3>
+                    <p>Share photos, videos, and stories with family members in a secure, private environment.</p>
+                </div>
+                
+                <div class="feature-card animated delay-3" data-feature="family">
+                    <div class="feature-icon">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <h3>Family Tree Integration</h3>
+                    <p>Connect with bloodline relatives and preserve genetic legacy through our platform.</p>
+                </div>
+                
+                <div class="feature-card animated delay-3" data-feature="virtual">
+                    <div class="feature-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Virtual Gravesites</h3>
+                    <p>Locate and visit virtual representations of physical gravesites from anywhere in the world.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Memorial Preview -->
+    <section class="memorial-preview" id="memorials">
+        <div class="container">
+            <div class="section-title animated">
+                <h2>Sample Memorial</h2>
+                <p>See how Elysian Lumina beautifully preserves the memory of loved ones</p>
+            </div>
+            
+            <div class="preview-container animated delay-1">
+                <div class="preview-header">
+                    <div class="preview-profile">
+                        <div class="preview-avatar">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="John Anderson">
+                        </div>
+                        <div class="preview-name">
+                            <h2>John Anderson</h2>
+                            <p>1952 - 2023</p>
+                        </div>
+                    </div>
+                    
+                    <div class="preview-stats">
+                        <div class="stat">
+                            <h3>71</h3>
+                            <p>Years Lived</p>
+                        </div>
+                        <div class="stat">
+                            <h3 id="daysSince">237</h3>
+                            <p>Days Since</p>
+                        </div>
+                        <div class="stat">
+                            <h3>42</h3>
+                            <p>Memories</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="preview-content">
+                    <div class="timeline">
+                        <h3><i class="fas fa-clock"></i> Life Timeline</h3>
+                        <div class="time-count">
+                            <div class="time-box">
+                                <div class="time-value" id="years">71</div>
+                                <div class="time-label">Years</div>
+                            </div>
+                            <div class="time-box">
+                                <div class="time-value" id="days">258</div>
+                                <div class="time-label">Days</div>
+                            </div>
+                            <div class="time-box">
+                                <div class="time-value" id="hours">14</div>
+                                <div class="time-label">Hours</div>
+                            </div>
+                            <div class="time-box">
+                                <div class="time-value" id="minutes">32</div>
+                                <div class="time-label">Minutes</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="preview-left">
+                        <div class="preview-card">
+                            <h3><i class="fas fa-music"></i> Favorite Music</h3>
+                            <div class="music-list">
+                                <div class="music-item" data-song="Imagine - John Lennon">
+                                    <i class="fas fa-play-circle music-icon"></i>
+                                    <div class="music-name">Imagine - John Lennon</div>
+                                </div>
+                                <div class="music-item" data-song="Hotel California - Eagles">
+                                    <i class="fas fa-play-circle music-icon"></i>
+                                    <div class="music-name">Hotel California - Eagles</div>
+                                </div>
+                                <div class="music-item" data-song="What a Wonderful World - Louis Armstrong">
+                                    <i class="fas fa-play-circle music-icon"></i>
+                                    <div class="music-name">What a Wonderful World - Louis Armstrong</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="preview-card">
+                            <h3><i class="fas fa-map-pin"></i> Favorite Places</h3>
+                            <p>Paris, France • Kyoto, Japan • Grand Canyon, USA • Swiss Alps</p>
+                        </div>
+                    </div>
+                    
+                    <div class="preview-right">
+                        <div class="preview-card">
+                            <h3><i class="fas fa-trophy"></i> Achievements</h3>
+                            <p>• Published Author (5 Novels)<br>• Founder of Anderson Foundation<br>• Award-winning Journalist<br>• Volunteer of the Year 2015</p>
+                        </div>
+                        
+                        <div class="preview-card">
+                            <h3><i class="fas fa-camera"></i> Recent Memories</h3>
+                            <div class="memory-grid">
+                                <div class="memory-item" data-image="https://images.unsplash.com/photo-1526662092590-e314cbeaf8da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80">
+                                    <img src="https://images.unsplash.com/photo-1526662092590-e314cbeaf8da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Memory">
+                                </div>
+                                <div class="memory-item" data-image="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80">
+                                    <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Memory">
+                                </div>
+                                <div class="memory-item" data-image="https://images.unsplash.com/photo-1535086181678-5a5c4d23aa7d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80">
+                                    <img src="https://images.unsplash.com/photo-1535086181678-5a5c4d23aa7d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Memory">
+                                </div>
+                                <div class="memory-item" data-image="https://images.unsplash.com/photo-1508700929628-666bc8bd84ea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80">
+                                    <img src="https://images.unsplash.com/photo-1508700929628-666bc8bd84ea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Memory">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hologram Section -->
+    <section class="features" id="hologram">
+        <div class="container">
+            <div class="section-title animated">
+                <h2>3D Hologram Technology</h2>
+                <p>Interact with a lifelike representation of your loved one through our advanced holographic technology</p>
+            </div>
+            
+            <div class="hologram-container">
+                <div class="hologram">
+                    <div class="hologram-face">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="hologram-face">
+                        <i class="fas fa-smile"></i>
+                    </div>
+                    <div class="hologram-face">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="hologram-face">
+                        <i class="fas fa-memory"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="btn btn-primary" id="tryHologramBtn">Experience Hologram</button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Elysian Lumina</h3>
+                    <p>A premium platform for preserving memories and honoring loved ones through cutting-edge technology.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Features</h3>
+                    <ul>
+                        <li><a href="#">AI Voice Cloning</a></li>
+                        <li><a href="#">3D Holograms</a></li>
+                        <li><a href="#">Memory Sharing</a></li>
+                        <li><a href="#">Family Tree</a></li>
+                        <li><a href="#">Virtual Gravesites</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Subscription Plans</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Subscribe</h3>
+                    <p>Stay updated with our latest features and news.</p>
+                    <form id="subscribeForm">
+                        <div class="form-group">
+                            <input type="email" placeholder="Your email address" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width:100%;">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Elysian Lumina. All rights reserved.</p>
+                <p class="developer">Developed by Brian Nyarienya</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeLogin">&times;</span>
+            <h2 class="modal-title">Login to Your Account</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email Address</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width:100%;">Login</button>
+            </form>
+            <p style="text-align: center; margin-top: 20px; color: #ccc;">
+                Don't have an account? <a href="#" id="switchToSignup" style="color: var(--premium-blue);">Sign Up</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div class="modal" id="signupModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeSignup">&times;</span>
+            <h2 class="modal-title">Create an Account</h2>
+            <form id="signupForm">
+                <div class="form-group">
+                    <label for="signupName">Full Name</label>
+                    <input type="text" id="signupName" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupEmail">Email Address</label>
+                    <input type="email" id="signupEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupPassword">Password</label>
+                    <input type="password" id="signupPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupPlan">Subscription Plan</label>
+                    <select id="signupPlan">
+                        <option value="basic">Basic (Free)</option>
+                        <option value="premium">Premium ($9.99/month)</option>
+                        <option value="family">Family ($19.99/month)</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width:100%;">Create Account</button>
+            </form>
+            <p style="text-align: center; margin-top: 20px; color: #ccc;">
+                Already have an account? <a href="#" id="switchToLogin" style="color: var(--premium-blue);">Login</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Memory Modal -->
+    <div class="modal" id="memoryModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeMemory">&times;</span>
+            <h2 class="modal-title">Shared Memory</h2>
+            <img id="modalImage" src="" style="width: 100%; border-radius: 10px; margin-bottom: 20px;">
+            <p id="modalCaption" style="text-align: center; color: #ccc;"></p>
+        </div>
+    </div>
+
+    <!-- Music Modal -->
+    <div class="modal" id="musicModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeMusic">&times;</span>
+            <h2 class="modal-title" id="musicTitle">Now Playing</h2>
+            <div style="text-align: center; margin: 20px 0;">
+                <i class="fas fa-music" style="font-size: 3rem; color: var(--primary-orange);"></i>
+            </div>
+            <p style="text-align: center; color: #ccc;">
+                Playing: <span id="nowPlaying"></span>
+            </p>
+            <div style="display: flex; justify-content: center; gap: 15px; margin-top: 20px;">
+                <button class="btn btn-secondary" id="prevBtn"><i class="fas fa-step-backward"></i></button>
+                <button class="btn btn-primary" id="playBtn"><i class="fas fa-play"></i></button>
+                <button class="btn btn-secondary" id="nextBtn"><i class="fas fa-step-forward"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feature Detail Modal -->
+    <div class="modal" id="featureModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeFeature">&times;</span>
+            <h2 class="modal-title" id="featureTitle">Feature Details</h2>
+            <div id="featureContent">
+                <!-- Content will be loaded dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const loginBtn = document.getElementById('loginBtn');
+        const signupBtn = document.getElementById('signupBtn');
+        const loginModal = document.getElementById('loginModal');
+        const signupModal = document.getElementById('signupModal');
+        const memoryModal = document.getElementById('memoryModal');
+        const musicModal = document.getElementById('musicModal');
+        const featureModal = document.getElementById('featureModal');
+        const closeLogin = document.getElementById('closeLogin');
+        const closeSignup = document.getElementById('closeSignup');
+        const closeMemory = document.getElementById('closeMemory');
+        const closeMusic = document.getElementById('closeMusic');
+        const closeFeature = document.getElementById('closeFeature');
+        const switchToSignup = document.getElementById('switchToSignup');
+        const switchToLogin = document.getElementById('switchToLogin');
+        const createMemorialBtn = document.getElementById('createMemorialBtn');
+        const learnMoreBtn = document.getElementById('learnMoreBtn');
+        const tryHologramBtn = document.getElementById('tryHologramBtn');
+        const logo = document.getElementById('logo');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const memoryItems = document.querySelectorAll('.memory-item');
+        const musicItems = document.querySelectorAll('.music-item');
+        const featureCards = document.querySelectorAll('.feature-card');
+        const subscribeForm = document.getElementById('subscribeForm');
+        const loginForm = document.getElementById('loginForm');
+        const signupForm = document.getElementById('signupForm');
+        const nowPlaying = document.getElementById('nowPlaying');
+        const playBtn = document.getElementById('playBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const modalImage = document.getElementById('modalImage');
+        const modalCaption = document.getElementById('modalCaption');
+        const featureTitle = document.getElementById('featureTitle');
+        const featureContent = document.getElementById('featureContent');
+
+        // Music player state
+        let currentSongIndex = 0;
+        let isPlaying = false;
+        const songs = [
+            "Imagine - John Lennon",
+            "Hotel California - Eagles",
+            "What a Wonderful World - Louis Armstrong"
+        ];
+
+        // Feature details
+        const featureDetails = {
+            voice: {
+                title: "AI Voice Cloning",
+                content: "<p>Our advanced AI technology analyzes recordings of your loved one's voice to create a realistic digital voice replica. This voice can then be used to read messages, tell stories, or even have comforting conversations based on their speech patterns and personality.</p><p>Features include:</p><ul><li>Voice pattern analysis</li><li>Custom speech generation</li><li>Emotional tone matching</li><li>Multiple language support</li></ul>"
+            },
+            timeline: {
+                title: "Life Timeline",
+                content: "<p>Celebrate your loved one's journey through an interactive timeline that highlights important milestones, achievements, and cherished moments. The timeline also includes a live counter showing their time alive and since passing.</p><p>Features include:</p><ul><li>Interactive timeline with photos</li><li>Important life events</li><li>Live time calculator</li><li>Customizable milestones</li></ul>"
+            },
+            hologram: {
+                title: "3D Hologram Technology",
+                content: "<p>Using advanced 3D modeling and holographic technology, we create a realistic representation of your loved one that can be viewed through AR/VR devices or on screen. This allows for a sense of presence and connection.</p><p>Features include:</p><ul><li>3D avatar creation from photos</li><li>Realistic movement simulation</li><li>AR/VR compatibility</li><li>Interactive conversations</li></ul>"
+            },
+            memory: {
+                title: "Memory Sharing",
+                content: "<p>Share photos, videos, and stories with family members in a secure, private environment. Our platform makes it easy to collect and preserve memories from multiple sources in one place.</p><p>Features include:</p><ul><li>Secure cloud storage</li><li>Family access controls</li><li>Memory categorization</li><li>Commenting and reactions</li></ul>"
+            },
+            family: {
+                title: "Family Tree Integration",
+                content: "<p>Connect with bloodline relatives and preserve your family's genetic legacy through our interactive family tree feature. Discover connections and share memories across generations.</p><p>Features include:</p><ul><li>Interactive family tree</li><li>DNA compatibility checking</li><li>Generational storytelling</li><li>Family reunion planning</li></ul>"
+            },
+            virtual: {
+                title: "Virtual Gravesites",
+                content: "<p>Locate and visit virtual representations of physical gravesites from anywhere in the world. Our technology creates detailed 3D models of burial sites that can be visited digitally.</p><p>Features include:</p><ul><li>3D grave mapping</li><li>Virtual flower laying</li><li>Memorial message leaving</li><li>Global access</li></ul>"
+            }
+        };
+
+        // Event Listeners
+        loginBtn.addEventListener('click', () => showModal(loginModal));
+        signupBtn.addEventListener('click', () => showModal(signupModal));
+        closeLogin.addEventListener('click', () => hideModal(loginModal));
+        closeSignup.addEventListener('click', () => hideModal(signupModal));
+        closeMemory.addEventListener('click', () => hideModal(memoryModal));
+        closeMusic.addEventListener('click', () => hideModal(musicModal));
+        closeFeature.addEventListener('click', () => hideModal(featureModal));
+        switchToSignup.addEventListener('click', (e) => {
+            e.preventDefault();
+            hideModal(loginModal);
+            showModal(signupModal);
+        });
+        switchToLogin.addEventListener('click', (e) => {
+            e.preventDefault();
+            hideModal(signupModal);
+            showModal(loginModal);
+        });
+        createMemorialBtn.addEventListener('click', () => showModal(signupModal));
+        learnMoreBtn.addEventListener('click', () => {
+            document.getElementById('features').scrollIntoView({ behavior: 'smooth' });
+        });
+        tryHologramBtn.addEventListener('click', () => {
+            alert("Hologram experience would launch here. This feature requires specialized AR/VR equipment for the full experience.");
+        });
+        logo.addEventListener('click', () => {
+            document.getElementById('home').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Navigation
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.getElementById(link.dataset.target);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Memory items
+        memoryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                modalImage.src = item.dataset.image;
+                modalCaption.textContent = "A cherished memory of John Anderson from their family collection.";
+                showModal(memoryModal);
+            });
+        });
+
+        // Music items
+        musicItems.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                currentSongIndex = index;
+                nowPlaying.textContent = item.dataset.song;
+                playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                isPlaying = true;
+                showModal(musicModal);
+            });
+        });
+
+        // Feature cards
+        featureCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const feature = card.dataset.feature;
+                if (feature && featureDetails[feature]) {
+                    featureTitle.textContent = featureDetails[feature].title;
+                    featureContent.innerHTML = featureDetails[feature].content;
+                    showModal(featureModal);
+                }
+            });
+        });
+
+        // Music player controls
+        playBtn.addEventListener('click', () => {
+            isPlaying = !isPlaying;
+            playBtn.innerHTML = isPlaying ? '<i class="fas fa-pause"></i>' : '<i class="fas fa-play"></i>';
+            // In a real app, this would control actual audio playback
+        });
+
+        prevBtn.addEventListener('click', () => {
+            currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+            nowPlaying.textContent = songs[currentSongIndex];
+            // In a real app, this would change the actual audio track
+        });
+
+        nextBtn.addEventListener('click', () => {
+            currentSongIndex = (currentSongIndex + 1) % songs.length;
+            nowPlaying.textContent = songs[currentSongIndex];
+            // In a real app, this would change the actual audio track
+        });
+
+        // Forms
+        subscribeForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert("Thank you for subscribing to our newsletter!");
+            subscribeForm.reset();
+        });
+
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert("Login functionality would be implemented here with backend authentication.");
+            hideModal(loginModal);
+            loginForm.reset();
+        });
+
+        signupForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert("Account creation functionality would be implemented here with backend integration.");
+            hideModal(signupModal);
+            signupForm.reset();
+        });
+
+        // Modal functions
+        function showModal(modal) {
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function hideModal(modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modals when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === loginModal) hideModal(loginModal);
+            if (e.target === signupModal) hideModal(signupModal);
+            if (e.target === memoryModal) hideModal(memoryModal);
+            if (e.target === musicModal) hideModal(musicModal);
+            if (e.target === featureModal) hideModal(featureModal);
+        });
+
+        // Live time since passing
+        function updateTimeSince() {
+            const daysSinceElement = document.getElementById('daysSince');
+            if (daysSinceElement) {
+                // Set a specific date for the memorial (March 15, 2023)
+                const passingDate = new Date(2023, 2, 15);
+                const currentDate = new Date();
+                const timeDiff = currentDate - passingDate;
+                const daysDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+                daysSinceElement.textContent = daysDiff;
+            }
+        }
+
+        // Initialize
+        updateTimeSince();
+        setInterval(updateTimeSince, 60000); // Update every minute
+
+        // Animation on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.animated');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                    }
+                });
+            });
+            
+            animatedElements.forEach(element => {
+                element.style.opacity = 0;
+                element.style.transition = 'opacity 0.5s ease-in-out';
+                observer.observe(element);
+            });
+            
+            // Countup animation for the timeline
+            const timeValues = document.querySelectorAll('.time-value');
+            const finalValues = [71, 258, 14, 32];
+            let animated = false;
+            
+            function animateValues() {
+                if (animated) return;
+                
+                timeValues.forEach((element, index) => {
+                    let current = 0;
+                    const target = finalValues[index];
+                    const increment = target / 50;
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
+                            element.textContent = target;
+                            clearInterval(timer);
+                        } else {
+                            element.textContent = Math.floor(current);
+                        }
+                    }, 50);
+                });
+                
+                animated = true;
+            }
+            
+            // Animate when the element is in viewport
+            const timelineElement = document.querySelector('.timeline');
+            const timelineObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateValues();
+                    }
+                });
+            });
+            
+            if (timelineElement) {
+                timelineObserver.observe(timelineElement);
+            }
+        });
+    </script>
+</body>
+</html>
