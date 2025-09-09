@@ -83,12 +83,6 @@
             background: linear-gradient(to right, var(--primary-orange), var(--metallic-gold));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-left: 10px;
-        }
-        
-        .logo-icon {
-            color: var(--primary-orange);
-            font-size: 32px;
         }
         
         nav ul {
@@ -525,6 +519,187 @@
             transform: scale(1.1);
         }
         
+        /* Family Tree Section */
+        .family-tree {
+            padding: 100px 0;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        .tree-container {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 40px;
+            position: relative;
+            min-height: 500px;
+            overflow: auto;
+        }
+        
+        .tree {
+            display: flex;
+            justify-content: center;
+            padding: 40px 0;
+        }
+        
+        .generation {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 30px;
+            position: relative;
+        }
+        
+        .generation::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 20px;
+            background: var(--metallic-gold);
+        }
+        
+        .generation-title {
+            margin-bottom: 20px;
+            color: var(--metallic-gold);
+            font-weight: 600;
+        }
+        
+        .family-members {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .member {
+            background: linear-gradient(135deg, var(--dark-black), var(--dark-green));
+            border-radius: 10px;
+            padding: 15px;
+            width: 150px;
+            text-align: center;
+            border: 1px solid var(--metallic-gold);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .member:hover {
+            transform: translateY(-5px);
+        }
+        
+        .member-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 10px;
+            border: 2px solid var(--metallic-gold);
+        }
+        
+        .member-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .member-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--text-light);
+        }
+        
+        .member-relation {
+            font-size: 0.8rem;
+            color: #ccc;
+            margin-bottom: 5px;
+        }
+        
+        .member-dna {
+            font-size: 0.8rem;
+            color: var(--primary-orange);
+        }
+        
+        /* Pricing Section */
+        .pricing {
+            padding: 100px 0;
+            background: rgba(0, 0, 0, 0.4);
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .pricing-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: transform 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pricing-card.popular {
+            border: 2px solid var(--metallic-gold);
+            transform: scale(1.05);
+        }
+        
+        .pricing-card.popular::before {
+            content: 'MOST POPULAR';
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--metallic-gold);
+            color: var(--dark-black);
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 5px 15px;
+            border-radius: 0 0 0 15px;
+        }
+        
+        .pricing-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--text-light);
+        }
+        
+        .price {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--primary-orange), var(--metallic-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .price span {
+            font-size: 1rem;
+            color: #ccc;
+        }
+        
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .pricing-features li {
+            margin-bottom: 10px;
+            color: #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .pricing-features li i {
+            color: var(--primary-orange);
+        }
+        
         /* Modal Styles */
         .modal {
             display: none;
@@ -726,6 +901,19 @@
             .preview-content {
                 grid-template-columns: 1fr;
             }
+            
+            .family-members {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .generation {
+                margin: 20px 0;
+            }
+            
+            .pricing-card.popular {
+                transform: none;
+            }
         }
         
         @media (max-width: 768px) {
@@ -779,7 +967,6 @@
     <header>
         <div class="container header-content">
             <div class="logo" id="logo">
-                <i class="fas fa-cloud-moon logo-icon"></i>
                 <h1>Elysian Lumina</h1>
             </div>
             
@@ -991,6 +1178,154 @@
         </div>
     </section>
 
+    <!-- Family Tree Section -->
+    <section class="family-tree" id="family">
+        <div class="container">
+            <div class="section-title animated">
+                <h2>Family Tree & DNA Profiles</h2>
+                <p>Explore the family bloodline and genetic connections of your loved ones</p>
+            </div>
+            
+            <div class="tree-container">
+                <div class="tree">
+                    <div class="generation">
+                        <div class="generation-title">Grandparents</div>
+                        <div class="family-members">
+                            <div class="member" data-member="grandfather">
+                                <div class="member-avatar">
+                                    <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Grandfather">
+                                </div>
+                                <div class="member-name">Robert Anderson</div>
+                                <div class="member-relation">Grandfather</div>
+                                <div class="member-dna">Blood Type: AB+</div>
+                            </div>
+                            <div class="member" data-member="grandmother">
+                                <div class="member-avatar">
+                                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Grandmother">
+                                </div>
+                                <div class="member-name">Margaret Anderson</div>
+                                <div class="member-relation">Grandmother</div>
+                                <div class="member-dna">Blood Type: O+</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="generation">
+                        <div class="generation-title">Parents</div>
+                        <div class="family-members">
+                            <div class="member" data-member="father">
+                                <div class="member-avatar">
+                                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Father">
+                                </div>
+                                <div class="member-name">Richard Anderson</div>
+                                <div class="member-relation">Father</div>
+                                <div class="member-dna">Blood Type: A+</div>
+                            </div>
+                            <div class="member" data-member="mother">
+                                <div class="member-avatar">
+                                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Mother">
+                                </div>
+                                <div class="member-name">Susan Anderson</div>
+                                <div class="member-relation">Mother</div>
+                                <div class="member-dna">Blood Type: B+</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="generation">
+                        <div class="generation-title">Deceased</div>
+                        <div class="family-members">
+                            <div class="member" data-member="deceased">
+                                <div class="member-avatar">
+                                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="John Anderson">
+                                </div>
+                                <div class="member-name">John Anderson</div>
+                                <div class="member-relation">Deceased</div>
+                                <div class="member-dna">Blood Type: AB+</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="generation">
+                        <div class="generation-title">Children</div>
+                        <div class="family-members">
+                            <div class="member" data-member="son">
+                                <div class="member-avatar">
+                                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Son">
+                                </div>
+                                <div class="member-name">Michael Anderson</div>
+                                <div class="member-relation">Son</div>
+                                <div class="member-dna">Blood Type: A+</div>
+                            </div>
+                            <div class="member" data-member="daughter">
+                                <div class="member-avatar">
+                                    <img src="https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Daughter">
+                                </div>
+                                <div class="member-name">Sarah Anderson</div>
+                                <div class="member-relation">Daughter</div>
+                                <div class="member-dna">Blood Type: B+</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-title animated">
+                <h2>Subscription Plans</h2>
+                <p>Choose the plan that best fits your memorial needs</p>
+            </div>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Basic</h3>
+                    <div class="price">$0<span>/month</span></div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Single Memorial Profile</li>
+                        <li><i class="fas fa-check"></i> 10GB Memory Storage</li>
+                        <li><i class="fas fa-check"></i> Basic Family Tree</li>
+                        <li><i class="fas fa-times"></i> AI Voice Cloning</li>
+                        <li><i class="fas fa-times"></i> 3D Holograms</li>
+                        <li><i class="fas fa-times"></i> DNA Profiling</li>
+                    </ul>
+                    <button class="btn btn-secondary" data-plan="basic">Select Plan</button>
+                </div>
+                
+                <div class="pricing-card popular">
+                    <h3>Premium</h3>
+                    <div class="price">$9.99<span>/month</span></div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> 5 Memorial Profiles</li>
+                        <li><i class="fas fa-check"></i> 50GB Memory Storage</li>
+                        <li><i class="fas fa-check"></i> Advanced Family Tree</li>
+                        <li><i class="fas fa-check"></i> AI Voice Cloning</li>
+                        <li><i class="fas fa-check"></i> Basic 3D Holograms</li>
+                        <li><i class="fas fa-check"></i> Basic DNA Profiling</li>
+                    </ul>
+                    <button class="btn btn-primary" data-plan="premium">Select Plan</button>
+                </div>
+                
+                <div class="pricing-card">
+                    <h3>Family</h3>
+                    <div class="price">$19.99<span>/month</span></div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Unlimited Memorials</li>
+                        <li><i class="fas fa-check"></i> 200GB Memory Storage</li>
+                        <li><i class="fas fa-check"></i> Complete Family Tree</li>
+                        <li><i class="fas fa-check"></i> Advanced AI Voice</li>
+                        <li><i class="fas fa-check"></i> Advanced 3D Holograms</li>
+                        <li><i class="fas fa-check"></i> Full DNA Profiling</li>
+                    </ul>
+                    <button class="btn btn-secondary" data-plan="family">Select Plan</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Hologram Section -->
     <section class="features" id="hologram">
         <div class="container">
@@ -1168,6 +1503,27 @@
         </div>
     </div>
 
+    <!-- Member Detail Modal -->
+    <div class="modal" id="memberModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeMember">&times;</span>
+            <h2 class="modal-title" id="memberName">Family Member</h2>
+            <div style="text-align: center; margin-bottom: 20px;">
+                <img id="memberImage" src="" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 3px solid var(--metallic-gold);">
+            </div>
+            <div class="preview-card">
+                <h3><i class="fas fa-dna"></i> DNA Information</h3>
+                <p id="memberDna">Blood Type: </p>
+                <p id="memberGenetics">Genetic Markers: </p>
+            </div>
+            <div class="preview-card">
+                <h3><i class="fas fa-users"></i> Family Relations</h3>
+                <p id="memberRelation">Relation: </p>
+                <p id="memberChildren">Children: </p>
+            </div>
+        </div>
+    </div>
+
     <script>
         // DOM Elements
         const loginBtn = document.getElementById('loginBtn');
@@ -1177,11 +1533,13 @@
         const memoryModal = document.getElementById('memoryModal');
         const musicModal = document.getElementById('musicModal');
         const featureModal = document.getElementById('featureModal');
+        const memberModal = document.getElementById('memberModal');
         const closeLogin = document.getElementById('closeLogin');
         const closeSignup = document.getElementById('closeSignup');
         const closeMemory = document.getElementById('closeMemory');
         const closeMusic = document.getElementById('closeMusic');
         const closeFeature = document.getElementById('closeFeature');
+        const closeMember = document.getElementById('closeMember');
         const switchToSignup = document.getElementById('switchToSignup');
         const switchToLogin = document.getElementById('switchToLogin');
         const createMemorialBtn = document.getElementById('createMemorialBtn');
@@ -1192,6 +1550,8 @@
         const memoryItems = document.querySelectorAll('.memory-item');
         const musicItems = document.querySelectorAll('.music-item');
         const featureCards = document.querySelectorAll('.feature-card');
+        const familyMembers = document.querySelectorAll('.member');
+        const pricingButtons = document.querySelectorAll('.pricing-card button');
         const subscribeForm = document.getElementById('subscribeForm');
         const loginForm = document.getElementById('loginForm');
         const signupForm = document.getElementById('signupForm');
@@ -1203,6 +1563,12 @@
         const modalCaption = document.getElementById('modalCaption');
         const featureTitle = document.getElementById('featureTitle');
         const featureContent = document.getElementById('featureContent');
+        const memberName = document.getElementById('memberName');
+        const memberImage = document.getElementById('memberImage');
+        const memberDna = document.getElementById('memberDna');
+        const memberGenetics = document.getElementById('memberGenetics');
+        const memberRelation = document.getElementById('memberRelation');
+        const memberChildren = document.getElementById('memberChildren');
 
         // Music player state
         let currentSongIndex = 0;
@@ -1241,6 +1607,66 @@
             }
         };
 
+        // Family member details
+        const memberDetails = {
+            grandfather: {
+                name: "Robert Anderson",
+                image: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80",
+                relation: "Grandfather",
+                bloodType: "AB+",
+                genetics: "European ancestry, longevity genes",
+                children: "Richard Anderson (son)"
+            },
+            grandmother: {
+                name: "Margaret Anderson",
+                image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80",
+                relation: "Grandmother",
+                bloodType: "O+",
+                genetics: "Nordic ancestry, artistic traits",
+                children: "Richard Anderson (son)"
+            },
+            father: {
+                name: "Richard Anderson",
+                image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80",
+                relation: "Father",
+                bloodType: "A+",
+                genetics: "Mixed European ancestry, mathematical aptitude",
+                children: "John Anderson, Emily Anderson"
+            },
+            mother: {
+                name: "Susan Anderson",
+                image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80",
+                relation: "Mother",
+                bloodType: "B+",
+                genetics: "Mediterranean ancestry, musical ability",
+                children: "John Anderson, Emily Anderson"
+            },
+            deceased: {
+                name: "John Anderson",
+                image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80",
+                relation: "Deceased",
+                bloodType: "AB+",
+                genetics: "Combined parental traits, creative intelligence",
+                children: "Michael Anderson, Sarah Anderson"
+            },
+            son: {
+                name: "Michael Anderson",
+                image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80",
+                relation: "Son",
+                bloodType: "A+",
+                genetics: "Paternal lineage, engineering aptitude",
+                children: "None"
+            },
+            daughter: {
+                name: "Sarah Anderson",
+                image: "https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80",
+                relation: "Daughter",
+                bloodType: "B+",
+                genetics: "Maternal lineage, artistic talent",
+                children: "None"
+            }
+        };
+
         // Event Listeners
         loginBtn.addEventListener('click', () => showModal(loginModal));
         signupBtn.addEventListener('click', () => showModal(signupModal));
@@ -1249,6 +1675,7 @@
         closeMemory.addEventListener('click', () => hideModal(memoryModal));
         closeMusic.addEventListener('click', () => hideModal(musicModal));
         closeFeature.addEventListener('click', () => hideModal(featureModal));
+        closeMember.addEventListener('click', () => hideModal(memberModal));
         switchToSignup.addEventListener('click', (e) => {
             e.preventDefault();
             hideModal(loginModal);
@@ -1313,6 +1740,31 @@
             });
         });
 
+        // Family members
+        familyMembers.forEach(member => {
+            member.addEventListener('click', () => {
+                const memberType = member.dataset.member;
+                if (memberType && memberDetails[memberType]) {
+                    const details = memberDetails[memberType];
+                    memberName.textContent = details.name;
+                    memberImage.src = details.image;
+                    memberDna.textContent = `Blood Type: ${details.bloodType}`;
+                    memberGenetics.textContent = `Genetic Markers: ${details.genetics}`;
+                    memberRelation.textContent = `Relation: ${details.relation}`;
+                    memberChildren.textContent = `Children: ${details.children}`;
+                    showModal(memberModal);
+                }
+            });
+        });
+
+        // Pricing buttons
+        pricingButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const plan = button.dataset.plan;
+                alert(`You have selected the ${plan.toUpperCase()} plan. This would redirect to a payment processing system.`);
+            });
+        });
+
         // Music player controls
         playBtn.addEventListener('click', () => {
             isPlaying = !isPlaying;
@@ -1348,7 +1800,8 @@
 
         signupForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            alert("Account creation functionality would be implemented here with backend integration.");
+            const plan = document.getElementById('signupPlan').value;
+            alert(`Account created successfully! You have selected the ${plan.toUpperCase()} plan.`);
             hideModal(signupModal);
             signupForm.reset();
         });
@@ -1371,6 +1824,7 @@
             if (e.target === memoryModal) hideModal(memoryModal);
             if (e.target === musicModal) hideModal(musicModal);
             if (e.target === featureModal) hideModal(featureModal);
+            if (e.target === memberModal) hideModal(memberModal);
         });
 
         // Live time since passing
